@@ -35,8 +35,43 @@
                 </div>
             </div>
         </div>
-    </div>
-
+   <!-- ChatterEase AI widget -->
+<iframe
+  id="chatterease-embed-b1aa2eb0-8026-43f1-8f53-4f1efb0ef0cb"
+  title="ChatterEase AI"
+  scrolling="no"
+  allow="none"
+  style="position:fixed;right:24px;bottom:24px;width:88px;height:88px;border:0;background:transparent;z-index:99999;transition:width .22s ease,height .22s ease"
+></iframe>
+<script>
+  (function () {
+    var APP = "https://chatterease.com";
+    var frame = document.getElementById("chatterease-embed-b1aa2eb0-8026-43f1-8f53-4f1efb0ef0cb");
+    if (!frame) return;
+    frame.src = APP + "/embed/b1aa2eb0-8026-43f1-8f53-4f1efb0ef0cb?inline=1";
+    window.addEventListener("message", function (e) {
+      if (!e || e.origin !== APP) return;
+      var d = e.data || {};
+      if (d.type !== "chatterease:size") return;
+      var narrow = window.innerWidth < 640;
+      if (d.open) {
+        frame.style.right = narrow ? "0" : "24px";
+        frame.style.bottom = narrow ? "0" : "24px";
+        frame.style.width = narrow ? "100vw" : "380px";
+        frame.style.height = narrow ? "100dvh" : "560px";
+        frame.style.borderRadius = narrow ? "0" : "16px";
+        frame.style.boxShadow = narrow ? "none" : "0 12px 40px rgba(15,23,42,.18)";
+      } else {
+        frame.style.right = "24px";
+        frame.style.bottom = "24px";
+        frame.style.width = ((d.width || 64) + 24) + "px";
+        frame.style.height = ((d.height || 64) + 24) + "px";
+        frame.style.borderRadius = "999px";
+        frame.style.boxShadow = "none";
+      }
+    });
+  })();
+</script>
 
 </body>
 </html>
